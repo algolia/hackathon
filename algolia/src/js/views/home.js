@@ -103,12 +103,8 @@ module.exports = React.createClass({
   render: function () {
     return (
       <UI.View>
-        <UI.Headerbar type="default" height="36px" className="Headerbar-form Subheader">
-          <UI.HeaderbarButton showView="component-form" viewTransition="reveal-from-left" 
-                              className="Headerbar-button right" label="Settings" />
-        </UI.Headerbar>
-        <Search searchString={this.state.query} onChange={this.updateSearch} />
         <UI.ViewContent grow scrollable>
+        <Search searchString={this.state.query} onChange={this.updateSearch} />
           <ComplexList users={this.state.users} helper={this.helper}/>
         </UI.ViewContent>
       </UI.View>

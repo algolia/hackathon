@@ -76,11 +76,11 @@ var App = React.createClass({
           </ReactCSSTransitionGroup>
         </div>
         <div className="demo-wrapper">
-          <img className="meetuplogo" src="img/meetup-logo.png" alt="TouchstoneJS" width="70" />
+          <img className="meetuplogo" src="img/github-logo.png" alt="Github" width="50" />
           <img src="img/logo-mark.svg" alt="TouchstoneJS" width="40" />
-          <img src="img/algolia-logo.png" alt="TouchstoneJS" width="50" />
+          <img src="img/algolia-logo.png" alt="Algolia" width="40" />
           <h1>
-            Meetup / TouchstoneJS / Algolia
+            Github / TouchstoneJS / Algolia
           </h1>
           <small>React Europe Hackathon</small>
         </div>
