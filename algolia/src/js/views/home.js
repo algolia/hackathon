@@ -10,7 +10,47 @@ var algoliasearchHelper = require('algoliasearch-helper');
 
 var Timers = require('react-timers');
 
-var People = require('../../data/people');
+var Search = React.createClass({
+  mixins: [Timers()],
+
+  propTypes: {
+    searchString: React.PropTypes.string,
+    onChange: React.PropTypes.func.isRequired
+  },
+
+  componentDidMount: function () {
+    var self = this;
+
+    this.setTimeout(function () {
+      self.refs.input.getDOMNode().focus();
+    }, 1000);
+  },
+
+  handleChange: function (event) {
+    this.props.onChange(event.target.value);
+  },
+
+  reset: function () {
+    this.props.onChange('');
+    this.refs.input.getDOMNode().focus();
+  },
+
+  render: function () {
+
+    var clearIcon = Boolean(this.props.searchString.length) ? <Tappable onTap={this.reset} className="Headerbar-form-clear ion-close-circled" /> : '';
+
+    return (
+      <UI.Headerbar type="default" height="36px" className="Headerbar-form Subheader">
+      <div className="Headerbar-form-field Headerbar-form-icon ion-ios7-search-strong">
+      <input ref="input" value={this.props.searchString} onChange={this.handleChange}
+             className="Headerbar-form-input" placeholder='Search...' />
+      {clearIcon}
+      </div>
+      </UI.Headerbar>
+    );
+  }
+
+});
 
 var ComplexListItem = React.createClass({
 	mixins: [Navigation],
@@ -55,7 +95,8 @@ module.exports = React.createClass({
   mixins: [Navigation],
   getInitialState : function(){
     return {
-      users : []
+      users : [],
+      query: ""
     }; 
   },
 
@@ -66,6 +107,7 @@ module.exports = React.createClass({
           <UI.HeaderbarButton showView="component-form" viewTransition="reveal-from-left" 
                               className="Headerbar-button right" label="Settings" />
         </UI.Headerbar>
+        <Search searchString={this.state.query} onChange={this.updateSearch} />
         <UI.ViewContent grow scrollable>
           <ComplexList users={this.state.users} helper={this.helper}/>
         </UI.ViewContent>
@@ -81,7 +123,15 @@ module.exports = React.createClass({
         users : results.hits
       } ); 
     } );
+    helper.on( "change", function( parameters ) {
+      self.setState( {
+        query : parameters.query
+      } );
+    } );
     this.helper = helper;
     helper.search();
-  }
+  },
+  updateSearch: function( query ) {
+    this.helper.setQuery( query ).search(); 
+  } 
 });
