@@ -3,110 +3,64 @@ var Tappable = require('react-tappable');
 var Navigation = require('touchstonejs').Navigation;
 var Link = require('touchstonejs').Link;
 var UI = require('touchstonejs').UI;
+var SetClass = require('classnames');
 
 var Timers = require('react-timers');
 
-module.exports = React.createClass({
-	mixins: [Navigation, Timers()],
+var People = require('../../data/people');
 
-	getInitialState: function () {
-		return {
-			popup: {
-				visible: false
-			}
-		};
-	},
-	showLoadingPopup: function () {
-		this.setState({
-			popup: {
-				visible: true,
-				loading: true,
-				header: 'Loading',
-				iconName: 'ion-load-c',
-				iconType: 'default'
-			}
+var ComplexListItem = React.createClass({
+	mixins: [Navigation],
+
+
+	render: function () {
+		var initials = this.props.user.name.first.charAt(0).toUpperCase() +
+			this.props.user.name.last.charAt(0).toUpperCase();
+
+		return (
+			<Link to="details" viewTransition="show-from-right" params={{ user: this.props.user, prevView: 'component-complex-list' }} className="list-item" component="div">
+				<UI.ItemMedia avatar={this.props.user.img} avatarInitials={initials} />
+				<div className="item-inner">
+					<div className="item-content">
+						<div className="item-title">{[this.props.user.name.first, this.props.user.name.last].join(' ')}</div>
+						<div className="item-subtitle">{this.props.user.location}</div>
+					</div>
+					<UI.ItemNote type="default" label={this.props.user.joinedDate.slice(-4)} icon="ion-chevron-right" />
+				</div>
+			</Link>
+
+		);
+	}
+});
+
+var ComplexList = React.createClass({
+	render: function () {
+		var users = [];
+		this.props.users.forEach(function (user, i) {
+			user.key = 'user-' + i;
+			users.push(React.createElement(ComplexListItem, { user: user }));
 		});
+		return (
+			<div>
+				<div className="panel panel--first avatar-list">
+					{users}
+				</div>
+			</div>
+		);
+	}
+});
 
-		var self = this;
-
-		this.setTimeout(function () {
-			self.setState({
-				popup: {
-					visible: true,
-					loading: false,
-					header: 'Done!',
-					iconName: 'ion-ios7-checkmark',
-					iconType: 'success'
-				}
-			});
-		}, 2000);
-
-		this.setTimeout(function () {
-			self.setState({
-				popup: {
-					visible: false
-				}
-			});
-		}, 3000);
-	},
+module.exports = React.createClass({
+	mixins: [Navigation],
 
 	render: function () {
 		return (
 			<UI.View>
-				<UI.Headerbar type="default" label="TouchstoneJS" />
+				<UI.Headerbar type="default" height="36px" className="Headerbar-form Subheader">
+
+				</UI.Headerbar>
 				<UI.ViewContent grow scrollable>
-					<div className="panel-header text-caps">Bars</div>
-					<div className="panel">
-						<Link component="div" to="component-headerbar" viewTransition="show-from-right" className="list-item is-tappable">
-							<div className="item-inner">Header Bar</div>
-						</Link>
-						<Link component="div" to="component-headerbar-search" viewTransition="show-from-right" className="list-item is-tappable">
-							<div className="item-inner">Header Bar Search</div>
-						</Link>
-						<Link component="div" to="component-alertbar" viewTransition="show-from-right" className="list-item is-tappable">
-							<div className="item-inner">Alert Bar</div>
-						</Link>
-						<Link component="div" to="component-footerbar" viewTransition="show-from-right" className="list-item is-tappable">
-							<div className="item-inner">Footer Bar</div>
-						</Link>
-					</div>
-					<div className="panel-header text-caps">Lists</div>
-					<div className="panel">
-						<Link component="div" to="component-simple-list" viewTransition="show-from-right" className="list-item is-tappable">
-							<div className="item-inner">Simple List</div>
-						</Link>
-						<Link component="div" to="component-complex-list" viewTransition="show-from-right" className="list-item is-tappable">
-							<div className="item-inner">Complex List</div>
-						</Link>
-						{/* This is covered in other components
-						<Link component="div" to="component-categorised-list" viewTransition="show-from-right" className="list-item is-tappable">
-							<div className="item-inner">Categorised List</div>
-						</Link>*/}
-					</div>
-					<div className="panel-header text-caps">UI Elements</div>
-					<div className="panel">
-						<Link component="div" to="component-toggle"   viewTransition="show-from-right" className="list-item is-tappable">
-							<div className="item-inner">Toggle</div>
-						</Link>
-						<Link component="div" to="component-form"     viewTransition="show-from-right" className="list-item is-tappable">
-							<div className="item-inner">Form Fields</div>
-						</Link>
-						<Link component="div" to="component-passcode" viewTransition="show-from-right" className="list-item is-tappable">
-							<div className="item-inner">Passcode / Keypad</div>
-						</Link>
-						<Tappable component="div" onTap={this.showLoadingPopup} className="list-item is-tappable">
-							<div className="item-inner">Loading Spinner</div>
-						</Tappable>
-					</div>
-					<div className="panel-header text-caps">Application State</div>
-					<div className="panel">
-						<Link component="div" to="transitions" viewTransition="show-from-right" className="list-item is-tappable">
-							<div className="item-inner">View Transitions</div>
-						</Link>
-						<Link component="div" to="component-feedback" viewTransition="show-from-right" className="list-item is-tappable">
-							<div className="item-inner">View Feedback</div>
-						</Link>
-					</div>
+					<ComplexList users={People} />
 				</UI.ViewContent>
 			</UI.View>
 		);

@@ -6440,6 +6440,13 @@ th {
   right: 0;
   top: 0;
 }
+.demo-wrapper h1 {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+}
+.demo-wrapper img {
+  margin-right: 30px;
+}
 .demo-wrapper * + * {
   margin-top: 1em;
 }
@@ -6494,10 +6501,10 @@ th {
 @media only screen and (min-width: 768px) {
   #app {
     background-repeat: repeat-x;
-    background-image: -webkit-linear-gradient(135deg, #c3299c, #c3292c);
-    background-image: -o-linear-gradient(135deg, #c3299c, #c3292c);
-    background-image: linear-gradient(135deg, #c3299c, #c3292c);
-    background-color: #c32964;
+    background-image: -webkit-linear-gradient(135deg, #2b4b5c, #2f2b5c);
+    background-image: -o-linear-gradient(135deg, #2b4b5c, #2f2b5c);
+    background-image: linear-gradient(135deg, #2b4b5c, #2f2b5c);
+    background-color: #2b395c;
     color: rgba(255, 255, 255, 0.5);
   }
   .app-wrapper {

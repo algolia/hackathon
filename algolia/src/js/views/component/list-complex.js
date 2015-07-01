@@ -10,8 +10,8 @@ var People = require('../../../data/people');
 var ComplexListItem = React.createClass({
 	mixins: [Navigation],
 
+
 	render: function () {
-		
 		var initials = this.props.user.name.first.charAt(0).toUpperCase() +
 			this.props.user.name.last.charAt(0).toUpperCase();
 
@@ -26,6 +26,7 @@ var ComplexListItem = React.createClass({
 					<UI.ItemNote type="default" label={this.props.user.joinedDate.slice(-4)} icon="ion-chevron-right" />
 				</div>
 			</Link>
+
 		);
 	}
 });
@@ -34,12 +35,10 @@ var ComplexList = React.createClass({
 	render: function () {
 
 		var users = [];
-		
 		this.props.users.forEach(function (user, i) {
 			user.key = 'user-' + i;
 			users.push(React.createElement(ComplexListItem, { user: user }));
 		});
-		
 		return (
 			<div>
 				<div className="panel panel--first avatar-list">
@@ -57,7 +56,7 @@ module.exports = React.createClass({
 
 		return (
 			<UI.View>
-				<UI.Headerbar type="default" label="Complex List">
+				<UI.Headerbar type="default" height="36px" className="Headerbar-form Subheader">
 					<UI.HeaderbarButton showView="home" viewTransition="reveal-from-right" label="Back" icon="ion-chevron-left" />
 				</UI.Headerbar>
 				<UI.ViewContent grow scrollable>

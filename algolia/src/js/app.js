@@ -76,17 +76,13 @@ var App = React.createClass({
           </ReactCSSTransitionGroup>
         </div>
         <div className="demo-wrapper">
-          <img src="img/logo-mark.svg" alt="TouchstoneJS" className="demo-brand" width="80" height="80" />
+          <img className="meetuplogo" src="img/meetup-logo.png" alt="TouchstoneJS" width="70" />
+          <img src="img/logo-mark.svg" alt="TouchstoneJS" width="40" />
+          <img src="img/algolia-logo.png" alt="TouchstoneJS" width="50" />
           <h1>
-            TouchstoneJS
-            <small> demo</small>
+            Meetup / TouchstoneJS / Algolia
           </h1>
-          <p>React.js powered UI framework for developing beautiful hybrid mobile apps.</p>
-          <ul className="demo-links">
-            <li><a href="https://twitter.com/touchstonejs" target="_blank" className="ion-social-twitter">Twitter</a></li>
-            <li><a href="https://github.com/jedwatson/touchstonejs" target="_blank" className="ion-social-github">Github</a></li>
-            <li><a href="http://touchstonejs.io" target="_blank" className="ion-map">Roadmap</a></li>
-          </ul>
+          <small>ReactEurop Hackathon</small>
         </div>
       </div>
     );
