@@ -6,6 +6,8 @@
   "main": "src/js/app.js",
   "author": "Jed Watson",
   "dependencies": {
+    "algoliasearch": "3.7.0",
+    "algoliasearch-helper": "2.1.2",
     "async": "^1.2.1",
     "classnames": "^2.1.2",
     "moment": "^2.10.3",
