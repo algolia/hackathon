@@ -82,7 +82,7 @@ var App = React.createClass({
           <h1>
             Meetup / TouchstoneJS / Algolia
           </h1>
-          <small>ReactEurop Hackathon</small>
+          <small>React Europe Hackathon</small>
         </div>
       </div>
     );

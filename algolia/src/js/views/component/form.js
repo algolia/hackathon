@@ -35,6 +35,7 @@ module.exports = React.createClass({
 			<UI.View>
 				<UI.Headerbar type="default" label="Form">
 					<UI.HeaderbarButton showView="home" viewTransition="reveal-from-right" label="Back" icon="ion-chevron-left" />
+					<UI.LoadingButton showView="home"  viewTransition="reveal-from-right" label="Save" className="Headerbar-button right is-primary" />
 				</UI.Headerbar>
 				<UI.ViewContent grow scrollable>
 					<div className="panel-header text-caps">Find an expert</div>

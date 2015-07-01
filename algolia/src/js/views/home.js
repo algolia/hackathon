@@ -28,7 +28,6 @@ var ComplexListItem = React.createClass({
 					<UI.ItemNote type="default" label={this.props.user.joinedDate.slice(-4)} icon="ion-chevron-right" />
 				</div>
 			</Link>
-
 		);
 	}
 });
@@ -57,7 +56,7 @@ module.exports = React.createClass({
 		return (
 			<UI.View>
 				<UI.Headerbar type="default" height="36px" className="Headerbar-form Subheader">
-
+					<UI.HeaderbarButton showView="component-form" viewTransition="reveal-from-left"  className="Headerbar-button right" label="Settings" />
 				</UI.Headerbar>
 				<UI.ViewContent grow scrollable>
 					<ComplexList users={People} />
